@@ -11,7 +11,7 @@
 }
 
 .camera-card {
-  width: min(100%, 980px);
+  width: min(100%, 820px);
   padding: clamp(10px, 1.8vw, 16px);
 }
 
@@ -27,8 +27,9 @@
 .camera-wrapper {
   position: relative;
   width: 100%;
-  height: min(58vh, 610px);
-  min-height: 330px;
+  aspect-ratio: 4 / 3;
+  max-height: min(56vh, 520px);
+  min-height: 300px;
   overflow: hidden;
   border-radius: 20px;
   background: #111827;
@@ -47,9 +48,90 @@
   transform: scaleX(-1) scale(1.055);
 }
 
+.love-burst {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.camera-wrapper.is-capturing .love-burst {
+  opacity: 1;
+}
+
+.love-burst span {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  display: block;
+  font-size: var(--size);
+  line-height: 1;
+  filter: drop-shadow(0 8px 14px rgba(190, 24, 93, 0.32));
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.72) rotate(-8deg);
+  animation: love-float 980ms ease-out var(--delay) forwards;
+  will-change: transform, opacity;
+}
+
+.love-burst::before {
+  content: "";
+  position: absolute;
+  left: 18%;
+  top: 18%;
+  width: 160px;
+  height: 190px;
+  border-radius: 50%;
+  border: 3px dotted rgba(255, 221, 235, 0.92);
+  opacity: 0;
+  transform: rotate(-28deg) scale(0.6);
+}
+
+.camera-wrapper.is-capturing .love-burst::before {
+  animation: sparkle-loop 900ms ease-out 80ms forwards;
+}
+
+@keyframes love-float {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -35%) scale(0.62) rotate(-10deg);
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  72% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--drift)), -145%) scale(1.08) rotate(10deg);
+  }
+}
+
+@keyframes sparkle-loop {
+  0% {
+    opacity: 0;
+    transform: rotate(-28deg) scale(0.6);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(-28deg) scale(1.08);
+  }
+}
+
 .camera-overlay {
   position: absolute;
   inset: 14px;
+  z-index: 3;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -75,6 +157,7 @@
 .countdown-display {
   position: absolute;
   inset: 0;
+  z-index: 4;
   display: grid;
   place-items: center;
   color: #fff;
@@ -159,12 +242,12 @@
   }
 
   .camera-card {
-    width: min(100%, 880px);
+    width: min(100%, 760px);
   }
 
   .camera-wrapper {
-    height: min(52vh, 470px);
-    min-height: 300px;
+    max-height: min(50vh, 430px);
+    min-height: 280px;
   }
 
   .thumb-grid {
