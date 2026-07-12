@@ -1,12 +1,22 @@
-from flask import Flask, jsonify, request
+from pathlib import Path
+
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 
-from services.gesture_detector import PeaceGestureDetector
-from services.image_processor import normalize_frame
-from utils.image_decoder import decode_base64_image
+try:
+    from .services.gesture_detector import PeaceGestureDetector
+    from .services.image_processor import normalize_frame
+    from .utils.image_decoder import decode_base64_image
+except ImportError:
+    from services.gesture_detector import PeaceGestureDetector
+    from services.image_processor import normalize_frame
+    from utils.image_decoder import decode_base64_image
 
 
-app = Flask(__name__)
+BASE_DIR = Path(__file__).resolve().parent.parent
+FRONTEND_DIR = BASE_DIR / "frontend"
+
+app = Flask(__name__, static_folder=str(FRONTEND_DIR), static_url_path="")
 CORS(app)
 
 detector = PeaceGestureDetector()
@@ -36,5 +46,18 @@ def detect_gesture():
     return jsonify(detector.detect(frame))
 
 
+@app.get("/")
+def serve_index():
+    return send_from_directory(FRONTEND_DIR, "index.html")
+
+
+@app.get("/<path:filename>")
+def serve_frontend(filename):
+    requested_file = FRONTEND_DIR / filename
+    if requested_file.is_file():
+        return send_from_directory(FRONTEND_DIR, filename)
+    return send_from_directory(FRONTEND_DIR, "index.html")
+
+
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

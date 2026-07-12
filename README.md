@@ -64,6 +64,25 @@ http://127.0.0.1:8000
 
 Gunakan `localhost` atau `127.0.0.1` supaya browser mengizinkan akses kamera saat development.
 
+## Deploy ke Render Satu Service
+
+Project ini sudah disiapkan agar Flask melayani frontend dan backend dalam satu URL Render.
+
+1. Push project ke GitHub.
+2. Buka Render, pilih `New` lalu `Blueprint`.
+3. Pilih repository Photoblur.
+4. Render akan membaca `render.yaml`.
+5. Deploy service `photoblur`.
+
+Konfigurasi Render:
+
+```text
+Build Command: pip install -r backend/requirements.txt
+Start Command: gunicorn backend.app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 120
+```
+
+Setelah deploy, buka URL Render yang diberikan. Frontend, asset, audio, frame, dan API gesture berjalan dari URL yang sama.
+
 ## Fitur Selesai
 
 - Landing page Photoblur dengan logo, tutorial, dekorasi pastel, dan modal pilihan 2 atau 4 foto.
