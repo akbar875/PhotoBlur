@@ -1,0 +1,17 @@
+export const stickerLibrary = [
+  { id: "cloud", name: "Awan", type: "text", value: "☁", color: "#a7d8ff" },
+  { id: "star", name: "Bintang", type: "text", value: "★", color: "#f9c74f" },
+  { id: "sparkle", name: "Sparkle", type: "text", value: "✦", color: "#f472b6" },
+  { id: "heart", name: "Hati", type: "text", value: "♥", color: "#fb6f92" },
+  { id: "flower", name: "Bunga", type: "text", value: "✿", color: "#f9a8d4" },
+  { id: "ribbon", name: "Pita", type: "text", value: "୨୧", color: "#ec4899" },
+  { id: "camera", name: "Kamera", type: "text", value: "▣", color: "#7c3aed" },
+  { id: "cat", name: "Cat", type: "text", value: "♡", color: "#111827" },
+  { id: "cute", name: "Cute", type: "label", value: "cute", color: "#ec4899" },
+  { id: "good-times", name: "Good Times", type: "label", value: "good times", color: "#8b5cf6" },
+  { id: "date", name: "Tanggal", type: "label", value: new Date().toLocaleDateString("id-ID"), color: "#475569" },
+  { id: "peace", name: "Peace", type: "label", value: "peace!", color: "#db2777" },
+  { id: "moon", name: "Bulan", type: "text", value: "◐", color: "#93c5fd" },
+  { id: "cherry", name: "Cherry", type: "text", value: "●●", color: "#ef4444" },
+  { id: "glow", name: "Glow", type: "text", value: "✧", color: "#fbbf24" },
+];

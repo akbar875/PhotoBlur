@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Editor - Photoblur</title>
+    <link rel="icon" type="image/jpeg" href="assets/logo/cat-camera.jpeg">
+    <link rel="apple-touch-icon" href="assets/logo/cat-camera.jpeg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script type="module" src="js/editor.js"></script>
+  </head>
+  <body>
+    <main class="page-shell editor-page">
+      <nav class="navbar" aria-label="Navigasi utama">
+        <a class="brand" href="index.html">
+          <img src="assets/logo/cat-camera.jpeg" alt="Logo Photoblur">
+          <span>Photoblur</span>
+        </a>
+        <span class="nav-note">Hias, atur filter, lalu download PNG.</span>
+      </nav>
+
+      <section class="editor-layout">
+        <article class="preview-panel card">
+          <p class="eyebrow">Preview</p>
+          <div class="canvas-wrap">
+            <canvas id="editorCanvas" width="900" height="1200" aria-label="Preview hasil foto"></canvas>
+          </div>
+          <div class="editor-actions">
+            <button class="ghost-btn" id="undoButton" type="button">Undo</button>
+            <button class="ghost-btn" id="redoButton" type="button">Redo</button>
+            <button class="secondary-btn" id="resetDecorButton" type="button">Reset Dekorasi</button>
+            <button class="secondary-btn" id="fullscreenButton" type="button">Preview Penuh</button>
+          </div>
+        </article>
+
+        <aside class="controls-panel card">
+          <div class="control-section">
+            <h2>Layout</h2>
+            <div class="option-grid" id="layoutOptions"></div>
+          </div>
+          <div class="control-section">
+            <h2 id="frameSectionTitle">Frame</h2>
+            <div class="option-grid" id="frameOptions"></div>
+          </div>
+          <div class="control-section">
+            <h2>Stiker</h2>
+            <div class="sticker-grid" id="stickerOptions"></div>
+          </div>
+          <div class="control-section">
+            <h2>Teks</h2>
+            <div class="form-grid">
+              <input class="text-input" id="textInput" type="text" maxlength="40" placeholder="Tulis caption">
+              <button class="primary-btn" id="addTextButton" type="button">Tambah</button>
+            </div>
+            <div class="range-row">
+              <label for="textColor">Warna teks</label>
+              <input class="color-input" id="textColor" type="color" value="#ec4899">
+              <span></span>
+            </div>
+          </div>
+          <div class="control-section">
+            <h2>Filter dan Blur</h2>
+            <select class="select-input" id="filterSelect">
+              <option value="normal">Normal</option>
+              <option value="soft">Soft Blur</option>
+              <option value="warm">Warm</option>
+              <option value="cool">Cool</option>
+              <option value="vintage">Vintage</option>
+              <option value="bw">Black and White</option>
+              <option value="sepia">Sepia</option>
+              <option value="pink">Pink Tone</option>
+              <option value="low">Low Contrast</option>
+              <option value="bright">Bright Clean</option>
+            </select>
+            <div class="range-row"><label for="blurRange">Blur</label><input id="blurRange" class="range-input" type="range" min="0" max="8" value="0"><span id="blurValue">0</span></div>
+            <div class="range-row"><label for="brightnessRange">Brightness</label><input id="brightnessRange" class="range-input" type="range" min="70" max="140" value="100"><span id="brightnessValue">100</span></div>
+            <div class="range-row"><label for="contrastRange">Contrast</label><input id="contrastRange" class="range-input" type="range" min="70" max="140" value="100"><span id="contrastValue">100</span></div>
+            <div class="range-row"><label for="saturationRange">Saturation</label><input id="saturationRange" class="range-input" type="range" min="0" max="180" value="100"><span id="saturationValue">100</span></div>
+          </div>
+          <div class="editor-actions">
+            <button class="secondary-btn" id="backCameraButton" type="button">Foto Ulang</button>
+            <button class="primary-btn" id="downloadButton" type="button">Download PNG</button>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <div class="fullscreen-preview" id="fullscreenPreview">
+      <button class="close-btn" id="closePreviewButton" type="button" aria-label="Tutup">×</button>
+      <img id="fullscreenImage" alt="Preview penuh Photoblur">
+    </div>
+  </body>
+</html>

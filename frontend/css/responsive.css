@@ -1,0 +1,101 @@
+@media (max-width: 767px) {
+  .page-shell {
+    width: min(100% - 20px, 100%);
+    padding-top: 10px;
+  }
+
+  .navbar {
+    top: 8px;
+    min-height: 56px;
+    padding: 8px 12px;
+  }
+
+  .brand img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav-note {
+    display: none;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 36px 0 28px;
+  }
+
+  .tutorial-grid,
+  .choice-grid,
+  .camera-layout,
+  .editor-layout,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .thumb-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .camera-wrapper {
+    height: min(52vh, 420px);
+    min-height: 260px;
+  }
+
+  .camera-card {
+    padding: 10px;
+  }
+
+  .camera-overlay {
+    inset: 9px;
+    gap: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .status-pill,
+  .counter-pill {
+    max-width: 100%;
+    font-size: 0.78rem;
+  }
+
+  .canvas-wrap {
+    min-height: 360px;
+  }
+
+  .range-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .editor-actions,
+  .result-actions,
+  .action-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .camera-layout,
+  .editor-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .camera-wrapper {
+    height: min(56vh, 560px);
+  }
+}
+
+@media (min-width: 1440px) {
+  .camera-card {
+    width: min(100%, 1080px);
+  }
+
+  .camera-wrapper {
+    height: min(58vh, 620px);
+  }
+
+  .editor-layout {
+    grid-template-columns: minmax(440px, 0.85fr) minmax(460px, 1.15fr);
+  }
+}

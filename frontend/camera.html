@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kamera - Photoblur</title>
+    <link rel="icon" type="image/jpeg" href="assets/logo/cat-camera.jpeg">
+    <link rel="apple-touch-icon" href="assets/logo/cat-camera.jpeg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/camera.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script type="module" src="js/camera.js"></script>
+  </head>
+  <body>
+    <main class="page-shell camera-page">
+      <nav class="navbar" aria-label="Navigasi utama">
+        <a class="brand" href="index.html">
+          <img src="assets/logo/cat-camera.jpeg" alt="Logo Photoblur">
+          <span>Photoblur</span>
+        </a>
+      </nav>
+
+      <section class="camera-layout">
+        <article class="camera-card card">
+          <div class="camera-topline">
+            <span id="modeLabel">Mode Foto</span>
+            <span id="apiStatus">Menghubungkan gesture...</span>
+          </div>
+          <div class="camera-wrapper">
+            <video id="cameraVideo" autoplay playsinline muted></video>
+            <div class="camera-overlay">
+              <div class="status-pill" id="gestureStatus">Arahkan wajah dan tangan ke kamera</div>
+              <div class="counter-pill" id="photoCounter">0/0</div>
+            </div>
+            <div class="countdown-display" id="countdownDisplay"></div>
+          </div>
+          <div class="thumb-grid" id="thumbnailGrid" aria-label="Thumbnail foto"></div>
+          <div class="completion-panel" id="completionPanel" hidden>
+            <p class="completion-title">Sesi foto selesai</p>
+            <p class="completion-copy">Cek hasilnya dulu. Kalau sudah cocok, lanjut hias foto.</p>
+            <div class="action-stack">
+              <button class="secondary-btn" id="retakeButton" type="button">Ulang Foto</button>
+              <button class="danger-btn" id="resetButton" type="button">Ulang Semua</button>
+              <button class="primary-btn" id="continueButton" type="button" disabled>Lanjut Hias Foto</button>
+            </div>
+          </div>
+          <canvas class="hidden-canvas" id="captureCanvas"></canvas>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
