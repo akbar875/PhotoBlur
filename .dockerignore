@@ -1,0 +1,13 @@
+.git
+.agents
+.codex
+__pycache__
+*.pyc
+.venv
+venv
+env
+.env
+.matplotlib
+.pytest_cache
+.DS_Store
+Thumbs.db

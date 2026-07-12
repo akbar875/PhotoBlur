@@ -1,3 +1,12 @@
+---
+title: Photoblur
+colorFrom: pink
+colorTo: purple
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # Photoblur
 
 Photoblur adalah website kamera berbasis browser untuk mengambil 2 atau 4 foto otomatis saat pose peace terdeteksi oleh backend Python, lalu menghias hasilnya dengan layout, frame, stiker, teks, filter, blur, dan mengunduh PNG.
@@ -82,6 +91,26 @@ Start Command: gunicorn backend.app:app --bind 0.0.0.0:$PORT --workers 1 --timeo
 ```
 
 Setelah deploy, buka URL Render yang diberikan. Frontend, asset, audio, frame, dan API gesture berjalan dari URL yang sama.
+
+## Deploy ke Hugging Face Spaces
+
+Project ini juga sudah siap untuk Hugging Face Spaces memakai Docker.
+
+1. Buka `https://huggingface.co/spaces`.
+2. Klik `Create new Space`.
+3. Isi nama Space, misalnya `photoblur`.
+4. Pilih `SDK` = `Docker`.
+5. Pilih visibility sesuai kebutuhan, public atau private.
+6. Upload/push semua file project ke repo Space.
+7. Hugging Face akan membaca `Dockerfile` dan menjalankan app di port `7860`.
+
+Docker menjalankan:
+
+```text
+gunicorn backend.app:app --bind 0.0.0.0:7860 --workers 1 --timeout 120
+```
+
+Setelah build selesai, Space akan memberi URL HTTPS yang bisa langsung dipakai untuk membuka Photoblur.
 
 ## Fitur Selesai
 
