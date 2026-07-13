@@ -27,9 +27,8 @@
 .camera-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  max-height: min(56vh, 520px);
-  min-height: 300px;
+  height: min(60vh, 560px);
+  min-height: 340px;
   overflow: hidden;
   border-radius: 20px;
   background: #111827;
@@ -173,7 +172,7 @@
   grid-template-columns: repeat(var(--slot-count, 4), minmax(0, 1fr));
   gap: 10px;
   width: min(100%, 520px);
-  margin: 12px auto 0;
+  margin: 28px auto 0;
 }
 
 .photo-slot {
@@ -246,14 +245,14 @@
   }
 
   .camera-wrapper {
-    max-height: min(50vh, 430px);
-    min-height: 280px;
+    height: min(54vh, 470px);
+    min-height: 310px;
   }
 
   .thumb-grid {
     width: min(100%, 420px);
     gap: 8px;
-    margin-top: 8px;
+    margin-top: 20px;
   }
 
   .camera-topline {

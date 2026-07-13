@@ -158,7 +158,9 @@ function capturePhoto() {
   persistPhotos();
   stableFrames = 0;
   cooldownUntil = Date.now() + 1400;
-  gestureStatus.textContent = photos.length >= selectedCount ? "Foto lengkap, lanjut hias foto" : "Foto tersimpan. Siap untuk foto berikutnya.";
+  if (photos.length < selectedCount) {
+    gestureStatus.textContent = "Foto tersimpan. Siap untuk foto berikutnya.";
+  }
   updateStability();
   renderState();
   window.setTimeout(() => {
@@ -250,6 +252,8 @@ function stopCameraMusic() {
 
 function renderState() {
   const complete = photos.length === selectedCount;
+  cameraWrapper.classList.toggle("is-complete", complete);
+  gestureStatus.hidden = complete;
   photoCounter.textContent = `${photos.length}/${selectedCount}`;
   completionPanel.hidden = !complete;
   continueButton.disabled = !complete;
@@ -282,6 +286,7 @@ retakeButton.addEventListener("click", () => {
   photos.pop();
   persistPhotos();
   stableFrames = 0;
+  gestureStatus.hidden = false;
   countdownDisplay.textContent = "";
   cameraWrapper.classList.remove("is-capturing");
   captureInProgress = false;
@@ -297,6 +302,7 @@ resetButton.addEventListener("click", () => {
   photos = [];
   persistPhotos();
   stableFrames = 0;
+  gestureStatus.hidden = false;
   countdownDisplay.textContent = "";
   cameraWrapper.classList.remove("is-capturing");
   captureInProgress = false;

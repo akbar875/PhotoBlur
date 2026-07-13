@@ -37,8 +37,8 @@
   }
 
   .camera-wrapper {
-    max-height: min(52vh, 420px);
-    min-height: 260px;
+    height: min(54vh, 440px);
+    min-height: 280px;
   }
 
   .camera-card {
@@ -82,7 +82,7 @@
   }
 
   .camera-wrapper {
-    max-height: min(54vh, 500px);
+    height: min(58vh, 520px);
   }
 }
 
@@ -92,7 +92,7 @@
   }
 
   .camera-wrapper {
-    max-height: min(56vh, 540px);
+    height: min(60vh, 580px);
   }
 
   .editor-layout {
