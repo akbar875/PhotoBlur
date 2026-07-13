@@ -30,6 +30,7 @@ def health():
     return jsonify({
         "status": "ok",
         "mediapipe_available": detector.available,
+        "mediapipe_error": detector.error,
     })
 
 

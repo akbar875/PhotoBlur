@@ -66,7 +66,7 @@ async function startCamera() {
     gestureBackendReady = Boolean(health.mediapipe_available);
     apiStatus.textContent = gestureBackendReady ? "Gesture backend aktif" : "Backend aktif, detektor belum siap";
     if (!gestureBackendReady) {
-      gestureStatus.textContent = "MediaPipe hand detector belum aktif. Jalankan backend dengan Python 3.9.";
+      gestureStatus.textContent = health.mediapipe_error || "MediaPipe hand detector belum aktif di backend.";
     }
 
     const stream = await navigator.mediaDevices.getUserMedia({

@@ -1,27 +1,32 @@
 import math
 import os
+import tempfile
 from dataclasses import dataclass
+
+os.environ.setdefault(
+    "MPLCONFIGDIR",
+    os.path.join(tempfile.gettempdir(), "matplotlib"),
+)
 
 import cv2
 
 
-os.environ.setdefault(
-    "MPLCONFIGDIR",
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".matplotlib")),
-)
+MEDIAPIPE_IMPORT_ERROR = ""
 
 try:
     import mediapipe as mp
     try:
         mp_hands = mp.solutions.hands
-    except AttributeError:
+    except (AttributeError, ImportError) as solutions_error:
         try:
             from mediapipe.python.solutions import hands as mp_hands
-        except ImportError:
+        except Exception as python_solutions_error:
             mp_hands = None
-except ImportError:  # Allows the API to start before dependencies are installed.
+            MEDIAPIPE_IMPORT_ERROR = f"{type(solutions_error).__name__}: {solutions_error}; {type(python_solutions_error).__name__}: {python_solutions_error}"
+except Exception as import_error:  # Allows the API to start before dependencies are installed.
     mp = None
     mp_hands = None
+    MEDIAPIPE_IMPORT_ERROR = f"{type(import_error).__name__}: {import_error}"
 
 
 @dataclass
@@ -43,6 +48,7 @@ class GestureResult:
 class PeaceGestureDetector:
     def __init__(self):
         self.available = mp_hands is not None
+        self.error = MEDIAPIPE_IMPORT_ERROR
         self.hands = None
 
         if self.available:
