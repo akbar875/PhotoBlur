@@ -1,14 +1,16 @@
 import os
+import sys
 from pathlib import Path
 
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 
-try:
+if __package__:
     from .services.gesture_detector import PeaceGestureDetector
     from .services.image_processor import normalize_frame
     from .utils.image_decoder import decode_base64_image
-except ImportError:
+else:
+    sys.path.append(str(Path(__file__).resolve().parent))
     from services.gesture_detector import PeaceGestureDetector
     from services.image_processor import normalize_frame
     from utils.image_decoder import decode_base64_image
