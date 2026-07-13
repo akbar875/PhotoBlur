@@ -17,7 +17,10 @@ RUN pip install --no-cache-dir --upgrade pip \
 
 COPY backend /app/backend
 COPY frontend /app/frontend
+COPY start.sh /app/start.sh
+
+RUN chmod +x /app/start.sh
 
 EXPOSE 7860
 
-CMD ["gunicorn", "backend.app:app", "--bind", "0.0.0.0:7860", "--workers", "1", "--timeout", "120"]
+CMD ["/app/start.sh"]
